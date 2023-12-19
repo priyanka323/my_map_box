@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js'></script>
+    <title>My Google Map</title>
+    
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css" type="text/css">
+  
+</head>
+<style>
+    body{
+    margin: 0;
+    padding: 0;
+    
+}
+#map{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+</style>
+<body>
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+        <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css" type="text/css">
+    <div id="map"> </div>
+
+    <script >
+
+        mapboxgl.accessToken = 'pk.eyJ1IjoicHJpeWFua2EzMjMiLCJhIjoiY2xxYnpqdGJzMDAyazJpcGh6NWV2amU5ZCJ9.uH7zyqhDKphKDxTcLKMrVA'
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v12',
+            //style: 'mapbox://styles/mapbox/outdoors-v12',
+            center: [-111, 45],
+            zoom: 1
+        })
+        const marker1 = new mapboxgl.Marker()
+        .setLngLat([-110, 45])
+        .addTo(map);
+
+        const marker2 = new mapboxgl.Marker({
+            color: 'green',
+            rotation: 45
+        })
+        .setLngLat([-112, 20])
+        .addTo(map);
+
+        map.addControl(new mapboxgl.FullscreenControl(), 'top-right');
+        map.addControl(new mapboxgl.NavigationControl(), 'top-right')
+
+     
+        const directions = new MapboxDirections({
+            accessToken: mapboxgl.accessToken
+        });
+
+        map.addControl(directions, 'top-left');
+   </script>
+
+</body>
+</html>
